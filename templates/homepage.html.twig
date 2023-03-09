@@ -1,0 +1,25 @@
+{# <Header @close-search=closeSearch @open-search="openSearch" /> #}
+{% include '@MarcheBe/header/_header.html.twig' %}
+{# <HomeSearch /> #}
+{% include '@MarcheBe/homepage/_home_search.html.twig' %}
+<main>
+    <section class="mx-2 mx-auto grid grid-cols-1 xl:mx-40 xl:grid-cols-[60%,40%] xl:gap-4">
+        <div>
+            {# <News /> #}
+            {% include '@MarcheBe/homepage/_news.html.twig' %}
+        </div>
+        <div class="shadow-lg">
+            {% include '@MarcheBe/homepage/_agenda.html.twig' %}
+            {# <Agenda /> #}
+        </div>
+    </section>
+    <section>
+        {% include '@MarcheBe/homepage/_widgets.html.twig' %}
+        {# <Widgets /> #}
+    </section>
+    <section>
+        {% include '@MarcheBe/homepage/_partners.html.twig' %}
+        {# <Partners /> #}
+    </section>
+</main>
+{#<Footer/>#}

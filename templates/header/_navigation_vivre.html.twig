@@ -1,0 +1,44 @@
+<nav
+        class="xl:hidden fixed bg-cta-dark bottom-0 left-0 right-0 h-full xl:h-auto xl:top-20 xl:bottom-auto xl:pb-4 w-full transition-all duration-500"
+        x-bind:class="menuMobileIsOpen ? 'top-0' : 'top-full'"
+        id="menu-vivre">
+    <ul
+            class="overscroll-contain overflow-y-scroll xl:overscroll-auto xl:overflow-y-auto flex flex-col items-start xl:items-stretch justify-start h-full xl:h-auto mt-3 box-border xl:max-w-[50%]">
+        {% include '@MarcheBe/header/mobile/_navigation_vivre_title_mobile.html.twig' %}
+        {# <NavigationVivreTitleMobile @toggle-menu="toggleMenu" /> #}
+        {% for item in items %}
+            <li
+                    data-top-id="{{ item.blogid }}"
+                    class="{{ item.colorhover }} py-1 initial w-full xl:w-auto flex flex-col xl:basis-full hover:bg-white font-montserrat-semi-bold leading-10 xl:leading-8 text-white">
+                <a href="/"
+                   @click.prevent="sousMenuOpen={{ item.blogid }}"
+                   class="flex justify-between items-center xl:inline ml-6 mr-6 whitespace-nowrap xl:ml-auto">
+                    <span>{{ item.name }}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" class="xl:hidden w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+                    </svg>
+                </a>
+                <div
+                        id="second-id-{{ item.blogid }}"
+                        x-bind:class="sousMenuOpen === {{ item.blogid }} ? 'left-0 z-30' : 'left-full'"
+                        class="overscroll-contain overflow-y-scroll xl:overscroll-auto xl:overflow-y-auto xl:hidden bg-white xl:bg-cta-dark absolute top-0 bottom-0 xl:left-1/2 right-0 group-hover:bg-white transition-all duration-700">
+                    {# <NavigationBackMenuMobile @toggle-sub-menu="toggleSubMenu" :item="item"> #}
+                    {% include '@MarcheBe/header/mobile/_navigation_back_menu_mobile.html.twig' %}
+
+                    {# </NavigationBackMenuMobile> #}
+                    <ul class="w-full pl-4 pb-4 xl:p-8 grid grid-cols-1 xl:grid-cols-2">
+                        {% for child in item.items %}
+                            <li
+                                    class="text-cta-dark font-montserrat-regular {{ item.colorhover }}">
+                                <a href="{{ child.url }}">
+                                    {{ child.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</nav>

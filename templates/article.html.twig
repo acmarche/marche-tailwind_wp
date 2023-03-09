@@ -1,0 +1,11 @@
+<article
+        class="container grid grid-cols-1 xl:grid-cols-3 items-start mt-24 xl:mt-28 mx-auto px-4">
+    {% include '@MarcheBe/article/_titre.html.twig' %}
+    {% include '@MarcheBe/article/_image.html.twig' %}
+    {% include '@MarcheBe/article/_tags.html.twig' %}
+    <section class="prose my-8 text-cta-dark xl:row-start-5 xl:row-end-6 xl:col-start-1 xl:col-end-3">
+        {{ content|raw }}
+    </section>
+    {% include '@MarcheBe/article/_share.html.twig' %}
+    {% include '@MarcheBe/article/_seealso.html.twig' %}
+</article>

@@ -1,0 +1,14 @@
+<header
+        class=" flex h-20 w-full items-center justify-end p-6 bg-white shadow-md z-20"
+        id="headerTop"
+        x-data="searchXl">
+    <a href="/" class="mr-auto">
+        <img src="{{ template_uri() }}/assets/images/img_logo.png" alt="logo" class="h-10 w-16 xl:h-14 xl:w-24" />
+    </a>
+    {% include '@MarcheBe/header/_navigation.html.twig' %}
+    {# <Navigation @close-search=closeSearch @open-search="updateOpenSearch" />#}
+    {#<IconesSocial />#}
+    {% include '@MarcheBe/header/_icones_social.html.twig' with {'color':'text-cta-dark'} %}
+    {# <PopupSearch @close-search=closeSearch @open-search="openSearch" :searchIsOpen="searchIsOpen" /> #}
+    {% include '@MarcheBe/header/xl/_popup_search.html.twig' %}
+</header>

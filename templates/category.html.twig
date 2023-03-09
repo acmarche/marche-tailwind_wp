@@ -1,0 +1,22 @@
+<main x-data="refreshOffres" x-init="initOffres({{ category.cat_ID }})"
+      class="container px-4 mt-24 xl:mt-28 mx-auto mb-8">
+    <div class="flex items-center mb-2">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+             class="text-cta-light w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/>
+        </svg>
+        <a href="{{ urlBack }}" class="ml-2 font-montserrat-semi-bold text-cta-light">
+            {{ nameBack }}
+        </a>
+    </div>
+
+    <h2 class="font-montserrat-semi-bold text-base xl:text-xl leading-7 text-cta-dark">
+        {{ name }}
+    </h2>
+
+    {% include '@MarcheBe/category/_children.html.twig' %}
+    {% include '@MarcheBe/category/_posts_alpine.html.twig' %}
+    <noscript>
+        {% include '@MarcheBe/category/_posts.html.twig' %}
+    </noscript>
+</main>
