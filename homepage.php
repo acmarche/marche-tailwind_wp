@@ -15,7 +15,7 @@ get_header();
 
 $wpRepository = new WpRepository();
 $news         = $wpRepository->getAllNews(6);
-$events       = $wpRepository->getEvents(max: 6);
+$events       = $wpRepository->getEvents();
 
 $pageAlert    = WpRepository::getPageAlert();
 $contentAlert = null;
