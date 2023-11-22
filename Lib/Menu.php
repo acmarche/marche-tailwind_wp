@@ -72,7 +72,7 @@ class Menu
                 $blog = get_current_blog_id();
                 $data = [];
                 foreach (Theme::SITES as $idSite => $site) {
-                    if (in_array($idSite, [8, 12, 13])) {
+                    if (in_array($idSite, [8, 12])) {
                         continue;
                     }
                     $data[$idSite]['name'] = ucfirst($site);
@@ -100,7 +100,7 @@ class Menu
                 $data = [];
                 foreach (Theme::SITES as $idSite => $site) {
                     switch_to_blog($idSite);
-                    if (in_array($idSite, [8, 12, 13])) {
+                    if (in_array($idSite, [8, 12])) {
                         continue;
                     }
                     $data[$idSite]['name'] = ucfirst($site);
