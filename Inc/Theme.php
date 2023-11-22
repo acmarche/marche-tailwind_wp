@@ -29,7 +29,6 @@ class Theme
         8                    => 'marchois',
         self::CULTURE        => 'culture',
         self::ROMAN          => 'roman',
-        13                   => 'noel',
         self::ENFANCE        => 'enfance',
     ];
     const COLORS = [
