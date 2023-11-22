@@ -15,10 +15,3 @@ use AcMarche\MarcheTail\Lib\Twig;
 //todo header et body sur meme ligne, si header pas en fixed ca va
 Twig::rend500Page();
 get_footer();
-
-try {
-    Mailer::sendError('error visit', "page ".RouterMarche::getCurrentUrl());
-
-} catch (\Exception $exception) {
-
-}

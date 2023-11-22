@@ -151,9 +151,7 @@ class Seo
     private static function metaCategory(int $cat_id)
     {
         $category = get_category($cat_id);
-        $url = RouterMarche::getCurrentUrl();
         if (!$category) {
-            Mailer::sendError('seo cat', 'cat not found '.$url);
             self::$metas['title'] = self::baseTitle("");
 
             return;
