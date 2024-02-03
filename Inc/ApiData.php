@@ -3,7 +3,7 @@
 
 namespace AcMarche\MarcheTail\Inc;
 
-use AcMarche\Bottin\Elasticsearch\Searcher;
+use AcMarche\Bottin\SearchData\Searcher;
 use AcMarche\Bottin\Repository\BottinRepository;
 use AcMarche\MarcheTail\Lib\Mailer;
 use AcMarche\MarcheTail\Lib\Carto;

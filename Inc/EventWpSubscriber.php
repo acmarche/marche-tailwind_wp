@@ -5,7 +5,7 @@ namespace AcMarche\MarcheTail\Inc;
 
 use AcMarche\MarcheTail\Lib\Cache;
 use AcMarche\MarcheTail\Lib\Mailer;
-use AcMarche\Bottin\Elasticsearch\ElasticIndexer;
+use AcMarche\Bottin\SearchData\ElasticIndexer;
 use WP_Post;
 use function add_action;
 
