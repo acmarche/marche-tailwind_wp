@@ -37,7 +37,7 @@ class ShortCodes
         add_shortcode('taxe', [new ShortCodes(), 'taxe']);
         add_shortcode('enaos', [new ShortCodes(), 'enaos']);
         add_shortcode('conseil_ordre', [new ShortCodes(), 'conseilOrdre']);
-        add_shortcode('conseil_pv', [new ShortCodes(), 'conseilPv']);
+      //  add_shortcode('conseil_pv', [new ShortCodes(), 'conseilPv']);
         add_shortcode('conseil_archive', [new ShortCodes(), 'conseilArchive']);
         add_shortcode('google_map', [new ShortCodes(), 'googleMap']);
         add_shortcode('menuDisplay', [new ShortCodes(), 'menuDisplay']);
@@ -83,7 +83,7 @@ class ShortCodes
         $endYear = date('Y') - 1;
         $txt = '';
 
-        $years = range(2019, $endYear);
+        $years = range(2019, 2023);
         rsort($years, SORT_NUMERIC);
 
         foreach ($years as $year) {
