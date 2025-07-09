@@ -324,7 +324,7 @@ class WpRepository
             $post->excerpt = $post->post_excerpt;
             $post->url = get_permalink($post->ID);
             $post->tags = WpRepository::getTags($post->ID);
-            $post->catIds = array_map(fn($tag) => $tag->id, $post->tags);
+            $post->catIds = array_map(fn($tag) => $tag['id'], $post->tags);
             $posts[] = $post;
         }
 
