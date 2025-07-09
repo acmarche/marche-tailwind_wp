@@ -322,6 +322,8 @@ class WpRepository
             $post = $querynews->next_post();
             $post->excerpt = $post->post_excerpt;
             $post->url = get_permalink($post->ID);
+            $post->catIds = $ids;
+            $post->tags = WpRepository::getTags($post->ID);
             $posts[] = $post;
         }
 
@@ -340,6 +342,8 @@ class WpRepository
                 $fiche->post_excerpt = Bottin::getExcerpt($fiche);
                 $fiche->url = RouterBottin::getUrlFicheBottin($idSite, $fiche);
                 $fiche->post_title = $fiche->societe;
+                $fiche->catIds = [];
+                $fiche->tags = [];
             },
             $fiches
         );
