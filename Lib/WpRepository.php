@@ -223,6 +223,7 @@ class WpRepository
             $tags[] = [
                 'name' => $category->name,
                 'url' => get_category_link($category),
+                'id' => $category->term_id,
             ];
         }
 
@@ -322,8 +323,8 @@ class WpRepository
             $post = $querynews->next_post();
             $post->excerpt = $post->post_excerpt;
             $post->url = get_permalink($post->ID);
-            $post->catIds = $ids;
             $post->tags = WpRepository::getTags($post->ID);
+            $post->catIds = array_map(fn($tag) => $tag->id, $post->tags);
             $posts[] = $post;
         }
 
