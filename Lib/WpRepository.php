@@ -479,7 +479,7 @@ class WpRepository
         if (is_iterable($ancestors)) {
             foreach (array_reverse($ancestors) as $id) {
                 $categoryParent = get_category($id);
-                $parents[] = $categoryParent->slug;
+                $parents[] = $categoryParent;
             }
         }
 
