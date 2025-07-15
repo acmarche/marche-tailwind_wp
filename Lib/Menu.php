@@ -36,13 +36,13 @@ class Menu
 
         $data = wp_get_nav_menu_items($menu, $args);
         foreach ($data as $row) {
+            $row->blog = $site;
+            $row->id = (int)$row->object_id;
             if ($row->object === 'post') {
                 $post = get_post($row->object_id);
                 if (!$post) {
                     continue;
                 }
-                $row->slug = $post->post_name;
-                $row->blog = $site;
                 $row->slug = $post->post_name;
                 $row->parents = $this->wpRepository->getAncestorsOfPost((int)$row->object_id);
             }
@@ -52,14 +52,12 @@ class Menu
                     continue;
                 }
                 $row->slug = $page->post_name;
-                $row->id = $row->object_id;
                 $row->parents = [];
             }
             if ($row->object === 'category') {
                 $category = get_category($row->object_id);
                 if ($category) {
                     $row->slug = $category->slug;
-                    $row->id = $row->object_id;
                     $row->parents = $this->wpRepository->getAncestorsOfCategory((int)$row->object_id);
                 }
             }
