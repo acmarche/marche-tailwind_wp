@@ -64,6 +64,11 @@ class Menu
                     $row->parents = $this->wpRepository->getAncestorsOfCategory((int)$row->object_id);
                 }
             }
+            if ($row->object === 'custom') {
+                $row->slug = $page->post_name;
+                $row->typejfs = 'custom';
+                $row->parents = [];
+            }
         }
 
         return $data;
