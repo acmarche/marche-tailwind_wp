@@ -44,7 +44,7 @@ class Menu
                     continue;
                 }
                 $row->slug = $post->post_name;
-                $row->type = 'article';
+                $row->typejfs = 'article';
                 $row->parents = $this->wpRepository->getAncestorsOfPost((int)$row->object_id);
             }
             if ($row->object === 'page') {
@@ -53,14 +53,14 @@ class Menu
                     continue;
                 }
                 $row->slug = $page->post_name;
-                $row->type = 'article';
+                $row->typejfs = 'article';
                 $row->parents = [];
             }
             if ($row->object === 'category') {
                 $category = get_category($row->object_id);
                 if ($category) {
                     $row->slug = $category->slug;
-                    $row->type = 'category';
+                    $row->typejfs = 'category';
                     $row->parents = $this->wpRepository->getAncestorsOfCategory((int)$row->object_id);
                 }
             }
