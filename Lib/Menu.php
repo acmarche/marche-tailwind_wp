@@ -16,21 +16,21 @@ class Menu
     public function __construct()
     {
         $this->wpRepository = new WpRepository();
-        $this->cache        = Cache::instance();
+        $this->cache = Cache::instance();
     }
 
-    public function getItems(int $idSite, ?int $currentCategory = null): array
+    public function getItems(int $idSite, string $site = null): array
     {
         $menu = wp_get_nav_menu_object(self::MENU_NAME);
 
         $args = array(
-            'order'                  => 'ASC',
-            'orderby'                => 'menu_order',
-            'post_type'              => 'nav_menu_item',
-            'post_status'            => 'publish',
-            'output'                 => ARRAY_A,
-            'output_key'             => 'menu_order',
-            'nopaging'               => true,
+            'order' => 'ASC',
+            'orderby' => 'menu_order',
+            'post_type' => 'nav_menu_item',
+            'post_status' => 'publish',
+            'output' => ARRAY_A,
+            'output_key' => 'menu_order',
+            'nopaging' => true,
             'update_post_term_cache' => false,
         );
 
@@ -38,24 +38,28 @@ class Menu
         foreach ($data as $row) {
             if ($row->object === 'post') {
                 $post = get_post($row->object_id);
-                if ( ! $post) {
+                if (!$post) {
                     continue;
                 }
-                $row->slug    = $post->post_name;
+                $row->slug = $post->post_name;
+                $row->blog = $site;
+                $row->slug = $post->post_name;
                 $row->parents = $this->wpRepository->getAncestorsOfPost((int)$row->object_id);
             }
             if ($row->object === 'page') {
                 $page = get_post($row->object_id);
-                if ( ! $page) {
+                if (!$page) {
                     continue;
                 }
-                $row->slug    = $page->post_name;
+                $row->slug = $page->post_name;
+                $row->id = $row->object_id;
                 $row->parents = [];
             }
             if ($row->object === 'category') {
                 $category = get_category($row->object_id);
                 if ($category) {
-                    $row->slug    = $category->slug;
+                    $row->slug = $category->slug;
+                    $row->id = $row->object_id;
                     $row->parents = $this->wpRepository->getAncestorsOfCategory((int)$row->object_id);
                 }
             }
@@ -79,10 +83,10 @@ class Menu
                     if ($idSite == 14) {
                         $data[$idSite]['name'] = 'Enfance-Jeunesse';
                     }
-                    $data[$idSite]['blogid']     = $idSite;
+                    $data[$idSite]['blogid'] = $idSite;
                     $data[$idSite]['colorhover'] = 'hover:text-'.$site;
-                    $data[$idSite]['color']      = 'text-'.$site;
-                    $data[$idSite]['items']      = $this->getItems($idSite);
+                    $data[$idSite]['color'] = 'text-'.$site;
+                    $data[$idSite]['items'] = $this->getItems($idSite);
                 }
                 switch_to_blog($blog);
 
@@ -108,10 +112,10 @@ class Menu
                     if ($idSite == 14) {
                         $data[$idSite]['name'] = 'Enfance-Jeunesse';
                     }
-                    $data[$idSite]['blogid']     = $idSite;
+                    $data[$idSite]['blogid'] = $idSite;
                     $data[$idSite]['colorhover'] = 'hover:text-'.$site;
-                    $data[$idSite]['color']      = 'text-'.$site;
-                    $data[$idSite]['items']      = $this->getItems($idSite, $currentCategory);
+                    $data[$idSite]['color'] = 'text-'.$site;
+                    $data[$idSite]['items'] = $this->getItems($idSite, $site);
                 }
                 switch_to_blog($blog);
 
