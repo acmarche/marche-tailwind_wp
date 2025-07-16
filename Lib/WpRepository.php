@@ -335,7 +335,7 @@ class WpRepository
             if ($categoryBottinId) {
                 $data = $bottinRepository->getFichesByCategory($categoryBottinId);
                 foreach ($data as $fiche) {
-                    $fiches[$fiche['id']] = $fiche;
+                    $fiches[$fiche->id] = $fiche;
                 }
             }
         }
