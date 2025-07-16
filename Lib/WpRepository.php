@@ -322,6 +322,7 @@ class WpRepository
         while ($querynews->have_posts()) {
             $post = $querynews->next_post();
             $post->excerpt = $post->post_excerpt;
+            $post->typejfs = 'article';
             $post->url = get_permalink($post->ID);
             $post->tags = WpRepository::getTags($post->ID);
             $post->catIds = array_map(fn($tag) => $tag['id'], $post->tags);
@@ -349,6 +350,7 @@ class WpRepository
         array_map(
             function ($fiche) use ($bottinRepository) {
                 $idSite = $bottinRepository->findSiteFiche($fiche);
+                $fiche->typejfs = 'bottin';
                 $fiche->fiche = true;
                 $fiche->excerpt = Bottin::getExcerpt($fiche);
                 $fiche->post_excerpt = Bottin::getExcerpt($fiche);
