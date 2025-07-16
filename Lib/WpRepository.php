@@ -328,11 +328,16 @@ class WpRepository
             $posts[] = $post;
         }
 
-        $fiches = [];
-        $categoryBottinId = get_term_meta($catId, BottinCategoryMetaBox::KEY_NAME, true);
         $bottinRepository = new BottinRepository();
-        if ($categoryBottinId) {
-            $fiches = $bottinRepository->getFichesByCategory($categoryBottinId);
+        $fiches = [];
+        foreach ($cats as $child) {
+            $categoryBottinId = get_term_meta($child->term_id, BottinCategoryMetaBox::KEY_NAME, true);
+            if ($categoryBottinId) {
+                $data = $bottinRepository->getFichesByCategory($categoryBottinId);
+                foreach ($data as $fiche) {
+                    $fiches[$fiche['id']] = $fiche;
+                }
+            }
         }
 
         array_map(
