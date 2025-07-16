@@ -323,6 +323,7 @@ class WpRepository
             $post = $querynews->next_post();
             $post->excerpt = $post->post_excerpt;
             $post->typejfs = 'article';
+            $post->id = $post->ID;
             $post->url = get_permalink($post->ID);
             $post->tags = WpRepository::getTags($post->ID);
             $post->catIds = array_map(fn($tag) => $tag['id'], $post->tags);
