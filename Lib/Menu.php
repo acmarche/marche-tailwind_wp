@@ -65,7 +65,7 @@ class Menu
                 }
             }
             if ($row->object === 'custom') {
-                $row->slug = $page->post_name;
+                $row->slug = $row->post_name;
                 $row->typejfs = 'custom';
                 $row->parents = [];
             }
