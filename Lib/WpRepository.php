@@ -335,7 +335,13 @@ class WpRepository
             if ($categoryBottinId) {
                 $data = $bottinRepository->getFichesByCategory($categoryBottinId);
                 foreach ($data as $fiche) {
+                    $fiche->catIds = [$child->term_id];
                     $fiches[$fiche->id] = $fiche;
+                    $fiche->tags = [
+                        'name' => $child->name,
+                        'url' => get_category_link($child),
+                        'id' => $child->term_id,
+                    ];
                 }
             }
         }
@@ -348,8 +354,7 @@ class WpRepository
                 $fiche->post_excerpt = Bottin::getExcerpt($fiche);
                 $fiche->url = RouterBottin::getUrlFicheBottin($idSite, $fiche);
                 $fiche->post_title = $fiche->societe;
-                $fiche->catIds = [];
-                $fiche->tags = [];
+
             },
             $fiches
         );
